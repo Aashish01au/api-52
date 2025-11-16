@@ -79,7 +79,6 @@ class AuthController{
                     if(userDetails.status !=="active"){
                         next({code:401, message:"User is not activated Yet.."})
                     }
-
                     let token = jwt.sign({_id:userDetails._id},process.env.JWT_SECRET,{
                         expiresIn:"1hr"
                     })

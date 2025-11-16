@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const authSvc = require("../app/auth/auth.services")
 const checkLogin = async (req,res,next)=>{
     try {
@@ -18,9 +19,9 @@ const checkLogin = async (req,res,next)=>{
             if(!token){
                 next({code:401, message :" Token is empty or null"})
             }else{
-                let data = jwt.verify(token,process.env.JWT_SECRET)
-                if(!data){
-                    next({code:401, message:"Token is expired.."})
+                const data = jwt.verify(token,process.env.JWT_SECRET)
+                if(!data.hasOwnProperty('_id')){
+                    next({code:401, message:"Invalid token"})
                 }else{
 
                     let user = await authSvc.findUserByFilter({_id:data._id})

@@ -1,4 +1,5 @@
-const generateRandomString = require("../../helpers/helpers")
+const { generateRandomString } = require("../../helpers/helpers")
+
 
 class AuthRequest{
     #data={}

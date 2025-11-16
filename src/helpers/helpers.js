@@ -1,3 +1,4 @@
+const fs = require("fs")
 const generateRandomString = (len=100)=>{
     try {
         let char = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJHKMNOPQRSTUVWXYZ"
@@ -14,4 +15,20 @@ const generateRandomString = (len=100)=>{
     }
 }
 
-module.exports = generateRandomString
+const deleteImage = (path)=>{
+    try {
+        if(path){
+            fs.unlinkSync(path)
+            return true
+        }else{
+            return false
+        }
+    } catch (exception) {
+        throw exception
+    }
+}
+
+module.exports ={
+    generateRandomString,
+    deleteImage
+}

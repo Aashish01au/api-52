@@ -1,0 +1,41 @@
+const mongoose = require("mongoose")
+
+const BannerSchema = new mongoose.Schema({
+    titile:{
+        type:String,
+        min:3,
+        require: true
+    },
+    createdBy:{
+        type : mongoose.Types.ObjectId,
+        ref:"User",
+        require: true,
+        default : null
+    },
+    link:{
+        type : String,
+        require:true
+    },
+    image:{
+        type : String,
+        require: true
+    },
+    status:{
+        type : String,
+        enum:["active","inactive"],
+        default:"inactive",
+        require : true
+    },
+    position:{
+        type : String,
+         require: true
+    }
+},{
+    timestamps : true,
+    autoCreate: true,
+    autoIndex: true
+})
+
+const BannerModel = mongoose.model("Banner",BannerSchema)
+
+module.exports = BannerModel
